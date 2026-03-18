@@ -1,0 +1,10 @@
+
+server:
+  port: 12221
+
+response:
+  delay:
+    default: 0
+    get_1: 100
+    get_2: 200
+    get_3: 500
