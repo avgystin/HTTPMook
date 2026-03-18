@@ -1,5 +1,4 @@
-package com.example.MookHTTP.configs;
-
+package com.example.MookHTTP.repositories;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -7,10 +6,11 @@ import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
+
 @Data
 @Component
-@ConfigurationProperties(prefix = "response.delay")
-public class DelayMemoryConfig {
+@ConfigurationProperties(prefix = "response.delay.static")
+public class DelayRepositories {
     private long defaultDelay;
     private long get_1;
     private long get_2;

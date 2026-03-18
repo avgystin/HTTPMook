@@ -4,7 +4,13 @@ server:
 
 response:
   delay:
-    default: 0
-    get_1: 100
-    get_2: 200
-    get_3: 500
+    static:
+      defaultDelay: 0
+      get_1: 100
+      get_2: 200
+      get_3: 300
+    dynamic:
+      defaultDelay: 0
+      get_4: 400
+      get_5: 500
+      get_10: 1000

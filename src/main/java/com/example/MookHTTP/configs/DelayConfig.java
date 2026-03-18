@@ -9,7 +9,7 @@ import java.util.Map;
 
 @Data
 @Component
-@ConfigurationProperties(prefix = "response.delay")
+@ConfigurationProperties(prefix = "response.delay.static")
 public class DelayConfig {
     private long defaultDelay;
     private long get_1;

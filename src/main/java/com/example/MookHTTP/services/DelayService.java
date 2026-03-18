@@ -2,7 +2,7 @@ package com.example.MookHTTP.services;
 
 
 import com.example.MookHTTP.configs.DelayConfig;
-import com.example.MookHTTP.configs.DelayMemoryConfig;
+import com.example.MookHTTP.repositories.DelayRepositories;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +21,7 @@ public class DelayService {
     private static final Logger log = LoggerFactory.getLogger(DelayService.class);
 
     private final DelayConfig delayConfig;
-    private final DelayMemoryConfig memoryConfig;
+    private final DelayRepositories delayRepositories;
 
 
 
@@ -39,17 +39,20 @@ public class DelayService {
     }
 
     public DelayConfig resetDelay() {
-        updateDelay(delayConfig, memoryConfig.getOriginalFromYaml());
+        updateDelay(delayConfig, delayRepositories.getOriginalFromYaml());
         return delayConfig;
     }
 
 
-    public void aplayDelay(String endpoint) {
+    public void applyDelay(String endpoint, long startTime) {
         long endpointDelay = getDalayEndpoint(endpoint);
-        try {
-            TimeUnit.MILLISECONDS.sleep(endpointDelay);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+        long realDelay = System.currentTimeMillis() - startTime;
+        if (endpointDelay > realDelay) {
+            try {
+                TimeUnit.MILLISECONDS.sleep(endpointDelay - realDelay);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
