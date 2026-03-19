@@ -1,8 +1,8 @@
 package com.example.MookHTTP.services;
 
 
-import com.example.MookHTTP.configs.DelayConfig;
-import com.example.MookHTTP.repositories.DelayRepositories;
+import com.example.MookHTTP.configs.DelayStaticConfig;
+import com.example.MookHTTP.repositories.DelayStaticRepositories;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,31 +16,31 @@ import java.util.concurrent.TimeUnit;
 
 @RequiredArgsConstructor
 @Service
-public class DelayService {
+public class DelayStaticService {
 
-    private static final Logger log = LoggerFactory.getLogger(DelayService.class);
+    private static final Logger log = LoggerFactory.getLogger(DelayStaticService.class);
 
-    private final DelayConfig delayConfig;
-    private final DelayRepositories delayRepositories;
+    private final DelayStaticConfig delayStaticConfig;
+    private final DelayStaticRepositories delayStaticRepositories;
 
 
 
-    public static DelayConfig updateDelay(DelayConfig delayConfig, Map<String, Object> updateDelayData) {
+    public static DelayStaticConfig updateDelay(DelayStaticConfig delayStaticConfig, Map<String, Object> updateDelayData) {
         updateDelayData.forEach((key, value) -> {
             try {
-                Field field = delayConfig.getClass().getDeclaredField(key);
+                Field field = delayStaticConfig.getClass().getDeclaredField(key);
                 field.setAccessible(true);
-                field.set(delayConfig, value);
+                field.set(delayStaticConfig, value);
             } catch (NoSuchFieldException | IllegalAccessException e) {
                 log.warn(String.valueOf(e));
             }
         });
-        return delayConfig;
+        return delayStaticConfig;
     }
 
-    public DelayConfig resetDelay() {
-        updateDelay(delayConfig, delayRepositories.getOriginalFromYaml());
-        return delayConfig;
+    public DelayStaticConfig resetDelay() {
+        updateDelay(delayStaticConfig, delayStaticRepositories.getOriginalFromYaml());
+        return delayStaticConfig;
     }
 
 
@@ -58,10 +58,10 @@ public class DelayService {
 
     private long getDalayEndpoint(String endpoint) {
         return switch (endpoint) {
-            case "get_1" -> delayConfig.getGet_1();
-            case "get_2" -> delayConfig.getGet_2();
-            case "get_3" -> delayConfig.getGet_3();
-            default -> delayConfig.getDefaultDelay();
+            case "get_1" -> delayStaticConfig.getGet_1();
+            case "get_2" -> delayStaticConfig.getGet_2();
+            case "get_3" -> delayStaticConfig.getGet_3();
+            default -> delayStaticConfig.getDefaultDelay();
         };
     }
 
