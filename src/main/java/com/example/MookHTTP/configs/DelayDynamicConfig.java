@@ -15,7 +15,6 @@ import java.util.Map;
 @Component
 @ConfigurationProperties(prefix = "response.delay")
 public class DelayDynamicConfig {
-
     private static final Logger log = LoggerFactory.getLogger(DelayDynamicConfig.class);
 
     private Map<String, Long> dynamic;  // все кастомные эндпоинты

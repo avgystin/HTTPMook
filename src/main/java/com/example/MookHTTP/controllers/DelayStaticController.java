@@ -18,18 +18,18 @@ public class DelayStaticController {
     private final DelayStaticService delayStaticService;
 
 
-    @GetMapping(path = "/getDelay")
+    @GetMapping(path = "/getStaticDelay")
     public DelayStaticConfig getDelay() {
         return delayStaticConfig;
     }
 
-    @PostMapping(path = "/postDelay")
+    @PostMapping(path = "/postStaticDelay")
     public DelayStaticConfig postDelay(@RequestBody Map<String, Object> updateDelayData)
     {
         return DelayStaticService.updateDelay(delayStaticConfig, updateDelayData);
     }
 
-    @GetMapping(path = "/resetDelay")
+    @GetMapping(path = "/resetStaticDelay")
     public DelayStaticConfig resetDelay() {
         return delayStaticService.resetDelay();
     }
