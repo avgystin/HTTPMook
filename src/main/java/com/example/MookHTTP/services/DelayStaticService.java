@@ -25,7 +25,7 @@ public class DelayStaticService {
 
 
 
-    public static DelayStaticConfig updateDelay(DelayStaticConfig delayStaticConfig, Map<String, Object> updateDelayData) {
+    public DelayStaticConfig updateDelay(DelayStaticConfig delayStaticConfig, Map<String, Object> updateDelayData) {
         updateDelayData.forEach((key, value) -> {
             try {
                 Field field = delayStaticConfig.getClass().getDeclaredField(key);

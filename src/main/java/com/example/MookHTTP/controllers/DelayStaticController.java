@@ -26,11 +26,11 @@ public class DelayStaticController {
     @PostMapping(path = "/postStaticDelay")
     public DelayStaticConfig postDelay(@RequestBody Map<String, Object> updateDelayData)
     {
-        return DelayStaticService.updateDelay(delayStaticConfig, updateDelayData);
+        return delayStaticService.updateDelay(delayStaticConfig, updateDelayData);
     }
 
     @GetMapping(path = "/resetStaticDelay")
-    public DelayStaticConfig resetDelay() {
+    private DelayStaticConfig resetDelay() {
         return delayStaticService.resetDelay();
     }
 }
